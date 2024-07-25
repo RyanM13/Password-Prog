@@ -1,34 +1,18 @@
 import re
 
-def PasswordCheck():
+def PasswordCheck(UpperC, LowerC, SpecialC, Name, Email, NumC):
      password = input("Please enter your password: ") 
 
-     if len(password) < 10:
-        print("Password too short.")
-        PasswordCheck()
-   
 
-     elif not (re.search(CapitolCase, password)):
-        print("Needs uppercase.") 
-        PasswordCheck()
-        
 
-     elif not (re.search(LowerCase, password)):
-        print("Needs lowercase")
-        PasswordCheck()
-      
-     elif not (re.search(NumCase, password)):
-        print("Needs numbers")
-        PasswordCheck()
-     return
 
-print("Instructions:\n\nEnter a password with at least 2 special characters.")
-print("Can not be your name or email")
-print("Needs at least one capitol letter")
-print("Finally it needs at least one number\n")
+UpperC = input("How many uppercase characters are required? ")
+LowerC = input("How many lowercase characters are required? ")
+SpecialC = input("How many special characters are required? ")
+Name = input("Is the users name allowed? ")
+Email = input("Is email allowed? ")
+NumC = input("How many numeric characers are required? ")
 
-name = input("Please enter your name: ")
-email = input("Please enter your email: ")
 
 print("Enter 1 to create your own password")
 print("Enter 2 to generate your password")
@@ -42,11 +26,9 @@ LowerCase = r"[a-z]"
 CapitolCase = r"[A-Z]"
 NumCase = r"[1-9]"
 if(choice == '1'):
-    PasswordCheck()
+    PasswordCheck(UpperC, LowerC, SpecialC, Name, Email, NumC)
     ##if(x = re.findall(SpecialList, password)):
      #   print("okay")
 elif(choice == '2'):
     ##generate password
    print("okay") 
-
-
