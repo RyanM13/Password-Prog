@@ -1,17 +1,42 @@
 import re
 
-def PasswordCheck(UpperC, LowerC, SpecialC, Name, Email, NumC):
-     password = input("Please enter your password: ") 
+def PasswordCheck(UpperC, LowerC, SpecialC, Name, Email, NumC, Uppercase, Lowercase, Numcase):
+     valid = False
+     while(valid == False):
+        valid = True
+        password = input("Please enter your password: ")
+        counterS = 0
+        counterU = 0 
+        for element in password:
+            if element in SpecialList:
+                 counterS += 1 
+        
+        for element in password:
+            if element.isupper():
+                 counterU += 1
 
+        if counterS <  SpecialC:
+            print("Not enough special characters. ")
+            valid = False
+        if counterU < UpperC:
+            print("Not enough uppercase characters. ")    
+            valid = False
 
+        if valid == True:
+            print("Password is valid!" )
+            return True
+        else:
+            print("Password is invalid, please try again. ")
+             
+         
 
-
-UpperC = input("How many uppercase characters are required? ")
-LowerC = input("How many lowercase characters are required? ")
-SpecialC = input("How many special characters are required? ")
+Length = int(input("How long should the password be? "))
+UpperC = int(input("How many uppercase characters are required? "))
+LowerC = int(input("How many lowercase characters are required? "))
+SpecialC = int(input("How many special characters are required? "))
 Name = input("Is the users name allowed? ")
 Email = input("Is email allowed? ")
-NumC = input("How many numeric characers are required? ")
+NumC = int(input("How many numeric characers are required? "))
 
 
 print("Enter 1 to create your own password")
@@ -21,12 +46,12 @@ choice = input()
 
 SpecialList = ["!", "@", "#", "$", "%", "^", "&", "*"]
 
-SpecialCase = r"[!-*]"
+
 LowerCase = r"[a-z]"
-CapitolCase = r"[A-Z]"
+Uppercase = r"[A-Z]"
 NumCase = r"[1-9]"
 if(choice == '1'):
-    PasswordCheck(UpperC, LowerC, SpecialC, Name, Email, NumC)
+    PasswordCheck(UpperC, LowerC, SpecialC, Name, Email, NumC, LowerCase,Uppercase, NumCase)
     ##if(x = re.findall(SpecialList, password)):
      #   print("okay")
 elif(choice == '2'):
