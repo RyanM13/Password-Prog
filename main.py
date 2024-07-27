@@ -1,12 +1,14 @@
 import re
 
-def PasswordCheck(UpperC, LowerC, SpecialC, Name, Email, NumC, Uppercase, Lowercase, Numcase):
+def PasswordCheck(Length, UpperC, LowerC, SpecialC, Name, Email, NumC, Uppercase, Lowercase, Numcase):
      valid = False
      while(valid == False):
         valid = True
         password = input("Please enter your password: ")
         counterS = 0
         counterU = 0 
+        counterL = 0
+        counterN = 0
         for element in password:
             if element in SpecialList:
                  counterS += 1 
@@ -15,13 +17,30 @@ def PasswordCheck(UpperC, LowerC, SpecialC, Name, Email, NumC, Uppercase, Lowerc
             if element.isupper():
                  counterU += 1
 
+        for element in password:
+            if element.islower(): 
+                counterL += 1
+
+        for element in password:
+            if element.isnumeric():
+                counterN += 1
+
+        if len(password) < Length:
+            print("Password not long enough. ")
+            valid = False
         if counterS <  SpecialC:
             print("Not enough special characters. ")
             valid = False
         if counterU < UpperC:
             print("Not enough uppercase characters. ")    
             valid = False
-
+        if counterL < LowerC:
+            print("Not enough lowercase characters. ")
+            valid = False
+        if counterN < NumC:
+            print("Not enough numbers. ")
+            valid = False 
+             
         if valid == True:
             print("Password is valid!" )
             return True
@@ -51,7 +70,7 @@ LowerCase = r"[a-z]"
 Uppercase = r"[A-Z]"
 NumCase = r"[1-9]"
 if(choice == '1'):
-    PasswordCheck(UpperC, LowerC, SpecialC, Name, Email, NumC, LowerCase,Uppercase, NumCase)
+    PasswordCheck(Length, UpperC, LowerC, SpecialC, Name, Email, NumC, LowerCase,Uppercase, NumCase)
     ##if(x = re.findall(SpecialList, password)):
      #   print("okay")
 elif(choice == '2'):
