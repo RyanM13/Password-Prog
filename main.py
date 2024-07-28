@@ -1,10 +1,10 @@
 import re
 import os
 
-def PasswordCheck(Length, UpperC, LowerC, SpecialC, Name, Email, NumC):
+def PasswordCheck(Length, UpperC, LowerC, SpecialC, Name, Email, NumC, File):
     #setting to False and than to true to keep the loop running when something is wrong.
      valid = False
-     while(valid == False):
+     while(not valid):
         valid = True
         password = input("Please enter your password: ")
 
@@ -43,7 +43,7 @@ def PasswordCheck(Length, UpperC, LowerC, SpecialC, Name, Email, NumC):
 
 
         if counterU < UpperC:
-            print("Not enough uppercase characters. ")    
+            print("Not enough uppercase characters. ")  
             valid = False
 
 
@@ -56,6 +56,8 @@ def PasswordCheck(Length, UpperC, LowerC, SpecialC, Name, Email, NumC):
             print("Not enough numbers. ")
             valid = False 
 
+        if password.find(File) != -1:
+           print("Bad") 
         #need to fix to where all caps doesn't work either
         if password.find(Name) != -1:
             ("Name cannot be used in password. ")
@@ -68,7 +70,7 @@ def PasswordCheck(Length, UpperC, LowerC, SpecialC, Name, Email, NumC):
             valid = False 
 
 #validating 
-        if valid == True:
+        if valid:
             print("Password is valid!" )
             return True
         else:
@@ -77,22 +79,28 @@ def PasswordCheck(Length, UpperC, LowerC, SpecialC, Name, Email, NumC):
 
 #Set of characters acceptable to be special characters 
 SpecialList = ["!", "@", "#", "$", "%", "^", "&", "*"]
-   
+
+#Opening the dictionary file to check prefixes
+File = open("Dictionary.txt", "r")
+
+
 #User input area to get all variables
 Length = int(input("How many characters should the password be? ")) 
 UpperC = int(input("How many uppercase characters are required? "))
 LowerC = int(input("How many lowercase characters are required? "))
 SpecialC = int(input("How many special characters are required? "))
 NumC = int(input("How many numeric characters are required? "))
-Name_Input= input("Is the users name allowed? (Y, N): ")
-if Name_Input == 'Y' or Name_Input == 'y': 
+#If no than any dictionary word above 5 characters is not allowed. 
+Dict = input("Are dictionary words allowed? (Y,N): ")
+Name_Input= input("Is the users name allowed? (Y,N): ")
+if Name_Input == 'N' or Name_Input == 'n': 
    Name = input("Please enter your name: ") 
 else:
 #setting to an illegal character to pass to the function
     Name = " "
-Email_Input = input("Is email allowed? ")
-if Email_Input == 'Y' or Email_Input == 'y':
-    Email = input("Please enter your email: (Y, N)")
+Email_Input = input("Is email allowed? (Y,N): ")
+if Email_Input == 'N' or Email_Input == 'n':
+    Email = input("Please enter your email: ")
 else:
 #setting to illegal character to void function variable
     Email = " "
@@ -107,7 +115,7 @@ choice = input()
 #Calling PasswordCheck if 1 
 #calling generate password if 2
 if(choice == '1'):
-    PasswordCheck(Length, UpperC, LowerC, SpecialC, Name, Email, NumC)
+    PasswordCheck(Length, UpperC, LowerC, SpecialC, Name, Email, NumC, File)
 elif(choice == '2'):
     ##generate password
    print("okay") 
