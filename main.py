@@ -130,8 +130,6 @@ while(Play == True):
 	#counter to know how many times to go through the loop
 			Passwords_Needed -= 1
 
-   
-
 	#Set of characters acceptable to be special characters 
 	SpecialList = ["!", "@", "#", "$", "%", "^", "&", "*"]
 
